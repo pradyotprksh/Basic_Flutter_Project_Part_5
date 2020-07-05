@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopapp/helpers/custom_route.dart';
 import 'package:shopapp/providers/auth_provider.dart';
 import 'package:shopapp/providers/cart_provider.dart';
 import 'package:shopapp/providers/orders_provider.dart';
@@ -39,11 +40,18 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<AuthProvider>(
           builder: (contextConsumer, authProvider, _) => MaterialApp(
-                title: 'MyShop',
+            title: 'MyShop',
                 theme: ThemeData(
-                    primarySwatch: Colors.purple,
-                    accentColor: Colors.deepOrange,
-                    fontFamily: 'Lato'),
+                  primarySwatch: Colors.purple,
+                  accentColor: Colors.deepOrange,
+                  fontFamily: 'Lato',
+                  pageTransitionsTheme: PageTransitionsTheme(
+                    builders: {
+                      TargetPlatform.android: CustomPageTransitionBuilder(),
+                      TargetPlatform.iOS: CustomPageTransitionBuilder(),
+                    },
+                  ),
+                ),
                 initialRoute: '/',
                 routes: {
                   '/': (context) => authProvider.isAuth

@@ -37,30 +37,30 @@ class _OrderItemState extends State<OrderItem> {
               },
             ),
           ),
-          if (_expanded)
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-              height: min(widget.orderItem.products.length * 20.0 + 10, 100),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        widget.orderItem.products[index].title,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${widget.orderItem.products[index].quantity}X \$${widget.orderItem.products[index].price}',
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
-                      )
-                    ],
-                  );
-                },
-                itemCount: widget.orderItem.products.length,
-              ),
-            )
+          AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+            height: min(_expanded ? widget.orderItem.products.length * 20.0 + 10 : 0, 100),
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      widget.orderItem.products[index].title,
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '${widget.orderItem.products[index].quantity}X \$${widget.orderItem.products[index].price}',
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                    )
+                  ],
+                );
+              },
+              itemCount: widget.orderItem.products.length,
+            ),
+          )
         ],
       ),
     );
