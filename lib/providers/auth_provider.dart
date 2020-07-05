@@ -57,7 +57,7 @@ class AuthProvider with ChangeNotifier {
   Future<void> authentication(
       String email, String password, String endpoint) async {
     final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$endpoint?key=AIzaSyAt8Q52RSxjYBUUCXv9Vl9H4ZJ6X2LhozY';
+        'https://identitytoolkit.googleapis.com/v1/accounts:$endpoint?key=<ENTER_API_KEY>';
     try {
       final response = await http.post(url,
           body: json.encode({
